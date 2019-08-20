@@ -5,12 +5,19 @@ object celeste { method esFuerte() { return false } }
 object pardo { method esFuerte() { return false } }
 object naranja { method esFuerte(){return true}}
 /* materiales */
-object cobre { method brilla() { return true } }
-object vidrio { method brilla() { return true } }
-object lino { method brilla() { return false } }
-object madera { method brilla() { return false } }
-object cuero { method brilla() { return false } }
-
+object cobre { method brilla() { return true } method conduce(){ return true}}
+object vidrio { method brilla() { return true } method conduce(){ return false}}
+object lino { method brilla() { return false } method conduce(){ return false}}
+object madera { method brilla() { return false } method conduce(){ return false}}
+object cuero { method brilla() { return false } method conduce(){ return false}}
+object plomo { 
+	var _estado = natural
+	method brilla(){ return _estado.brilla()} 
+	method conduce() { return _estado.conduce()}
+	method setEstado(estado){
+		_estado = estado 
+	} 
+}
 /* objetos */
 object remera {
 	method color() { return rojo }
@@ -67,7 +74,6 @@ object banquito{
 
 object cajita{
 	var _material
-	var _peso
 	var _objeto
 	
 	method color(){ return rojo }
@@ -75,7 +81,23 @@ object cajita{
 	method setMaterial(material){ _material = material }
 	method dentroObjeto() { return _objeto}
 	method setDentroObjeto(objeto) { _objeto = objeto }
-
+	method peso(){ return 400 + _objeto.peso()}
 }
 
 
+//ESTADOS
+
+object natural {
+	method brilla(){ return true}
+	method conduce(){ return false}
+}
+
+object cromado {
+	method brilla(){ return true}
+	method conduce(){ return true}
+}
+
+object oxidado {
+	method brilla(){ return false}
+	method conduce(){ return false}
+}

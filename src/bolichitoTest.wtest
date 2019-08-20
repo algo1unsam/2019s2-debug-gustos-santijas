@@ -87,3 +87,71 @@ test "El bolichito con una remera y una pelota puede ofrecerle algo a Luisa" {
 	
 	assert.notThat(bolichito.puedeOfrecerleAlgoA(luisa))
 }
+
+test "El bolichito con un banquito en mostrador y una cajita de cobre con una pelota dentro en vidriera no está desequilibrado y tiene algo naranja"{
+	bolichito.ponerEnMostrador(banquito)
+	bolichito.ponerEnVidriera(cajita)
+	cajita.setMaterial(cobre)
+	cajita.setDentroObjeto(pelota)
+	
+	assert.notThat(bolichito.estaDesequilibrado())
+	assert.that(bolichito.tieneAlgoDeColor(naranja))
+}
+
+test "El bolichito con un banquito en mostrador y una cajita de cobre con hay un arito dentro de la cajita, entonces sí está desequilibrado y tiene algo naranja"{
+	bolichito.ponerEnMostrador(banquito)
+	bolichito.ponerEnVidriera(cajita)
+	cajita.setMaterial(cobre)
+	cajita.setDentroObjeto(arito)
+	
+	assert.that(bolichito.estaDesequilibrado())
+	assert.that(bolichito.tieneAlgoDeColor(naranja))	
+}
+
+test "El bolichito con un banquito en mostrador cambiado a color verde y una cajita de cobre con hay un arito dentro de la cajita, entonces sí está desequilibrado y no tiene algo naranja"{
+	bolichito.ponerEnMostrador(banquito)
+	bolichito.ponerEnVidriera(cajita)
+	cajita.setMaterial(cobre)
+	cajita.setDentroObjeto(arito)
+	banquito.setColor(verde)
+	
+	assert.that(bolichito.estaDesequilibrado())
+	assert.notThat(bolichito.tieneAlgoDeColor(naranja))	
+}
+
+test "El bolichito con un muñeco de 500 gramos en mostrador y una cajita de plomo con un arito dentro es brillante pero no tiene luz."{
+	bolichito.ponerEnMostrador(munieco)
+	bolichito.ponerEnVidriera(cajita)
+	munieco.setPeso(500)
+	cajita.setMaterial(plomo)
+	cajita.setDentroObjeto(arito)
+	
+	assert.that(bolichito.esBrillante())
+	assert.notThat(bolichito.tieneLuz())
+	
+}
+
+test "El bolichito con un muñeco de 500 gramos en mostrador y una cajita de plomo cromado con un arito dentro es brillante y tiene luz."{
+	bolichito.ponerEnMostrador(munieco)
+	bolichito.ponerEnVidriera(cajita)
+	munieco.setPeso(500)
+	cajita.setMaterial(plomo)
+	cajita.setDentroObjeto(arito)
+	cajita.material().setEstado(cromado)
+	
+	assert.that(bolichito.esBrillante())
+	assert.that(bolichito.tieneLuz())
+	
+}
+
+test "El bolichito con un muñeco de 500 gramos en mostrador y una cajita de plomo oxidado con un arito dentro no es brillante ni tiene luz."{
+	bolichito.ponerEnMostrador(munieco)
+	bolichito.ponerEnVidriera(cajita)
+	munieco.setPeso(500)
+	cajita.setMaterial(plomo)
+	cajita.setDentroObjeto(arito)
+	cajita.material().setEstado(oxidado)
+	assert.notThat(bolichito.esBrillante())
+	assert.notThat(bolichito.tieneLuz())
+	
+}
