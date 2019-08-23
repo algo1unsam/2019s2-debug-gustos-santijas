@@ -155,3 +155,14 @@ test "El bolichito con un muñeco de 500 gramos en mostrador y una cajita de plo
 	assert.notThat(bolichito.tieneLuz())
 	
 }
+
+test "Test con una cajita de cobre con un muñeco que pesa 100 dentro, primero pesa 500, si cambio el peso del muñeco a 400 entonces el peso total debería ser 800"{
+   	munieco.setPeso(100)
+   	cajita.setMaterial(cobre)
+   	cajita.setDentroObjeto(munieco)
+   	assert.that(cajita.peso()==500)
+   	
+   	munieco.setPeso(400)
+   	
+   	assert.that(cajita.peso()==800)
+   }
