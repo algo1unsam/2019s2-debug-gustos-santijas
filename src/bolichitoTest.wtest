@@ -160,9 +160,10 @@ test "Test con una cajita de cobre con un muñeco que pesa 100 dentro, primero p
    	munieco.setPeso(100)
    	cajita.setMaterial(cobre)
    	cajita.setDentroObjeto(munieco)
-   	assert.that(cajita.peso()==500)
+   	assert.that(cajita.peso()==500) // Puedo usar equals assert.equals(expected, actual)
    	
    	munieco.setPeso(400)
    	
-   	assert.that(cajita.peso()==800)
+   	assert.that(cajita.peso()==800) // Puedo usar equals assert.equals(expected, actual)
+   	 
    }
